@@ -1,0 +1,225 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  display: inline-block;
+}
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  font-family: "inter";
+}
+/* End CSS Reset */
+/* Toggle */
+.magic {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: absolute;
+  top: 37rem;
+  font-size: 3rem;
+  font-weight: bold;
+  z-index: 3;
+}
+.magic-input {
+  display: none;
+}
+.magic-label {
+  width: 4.4rem;
+  height: 2.35rem;
+  border-radius: 1.5rem;
+  background-color: black;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  padding: 0.3rem 0.3rem;
+}
+.magic-label::after {
+  content: "";
+  display: block;
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+.magic-input:checked + .magic-label {
+  background-color: white;
+}
+.magic-input:checked + .magic-label::after {
+  transform: translateX(1.9rem);
+  background-color: #750606;
+}
+/* End Toggle */
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7e6f0;
+  opacity: 0.9;
+  background: radial-gradient(
+      circle,
+      transparent 20%,
+      #f7e6f0 20%,
+      #f7e6f0 80%,
+      transparent 80%,
+      transparent
+    ),
+    radial-gradient(
+        circle,
+        transparent 20%,
+        #f7e6f0 20%,
+        #f7e6f0 80%,
+        transparent 80%,
+        transparent
+      )
+      27.5px 27.5px,
+    linear-gradient(#f7455b 2.2px, transparent 2.2px) 0 -1.1px,
+    linear-gradient(90deg, #f7455b 2.2px, #f7e6f0 2.2px) -1.1px 0;
+  background-size: 55px 55px, 55px 55px, 27.5px 27.5px, 27.5px 27.5px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 40rem;
+  overflow: hidden;
+  border-top-right-radius: 10rem;
+  border-bottom-left-radius: 7.2rem;
+  background-color: white;
+  box-shadow: 0 0 2.7rem gray;
+}
+.top {
+  height: 12.5rem;
+  background-image: linear-gradient(to left, #f7456c, red);
+}
+.middle {
+  height: 30rem;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: -6rem;
+}
+.instructions {
+  font-size: 1.8rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 550;
+  margin-top: 1.5rem;
+}
+.pic {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  border: 0.4rem solid white;
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.8rem;
+  height: 6rem;
+
+  background-image: linear-gradient(to right, #f7456c, red);
+}
+.icon {
+  width: 3.3rem;
+  height: 3.3rem;
+  transition: 0.3s;
+}
+.icon:hover {
+  scale: 1.28;
+
+  animation: jiggle 2s infinite alternate;
+}
+/* Animation */
+.top {
+  position: relative;
+}
+.middle {
+  z-index: 1;
+}
+.top::after {
+  position: absolute;
+  top: 3.5rem;
+  content: "Junior";
+  background-color: #e0be25;
+  font-weight: bold;
+  padding: 1rem 1rem;
+  border-top-right-radius: 0.7rem;
+  border-bottom-right-radius: 0.7rem;
+  animation: slide 0.8s alternate;
+  display: none;
+}
+@keyframes slide {
+  from {
+    transform: translateX(-7rem);
+  }
+  to {
+    transform: translateX(0rem);
+  }
+}
+.container:has(.magic-input:checked) .top::after {
+  display: block;
+}
+@keyframes jiggle {
+  0% {
+    tranform: rotateZ(17deg);
+  }
+  25% {
+    transform: rotateZ(17deg);
+  }
+  50% {
+    transform: rotateZ(-17deg);
+  }
+  75% {
+    transform: rotateZ(-17deg);
+  }
+  100% {
+    transform: rotateZ(17deg);
+  }
+}
+.badge {
+  position: absolute;
+  z-index: 2;
+  top: 68rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s;
+}
+.side-badge {
+  animation: party 0.5s infinite alternate;
+}
+.middle-badge {
+  animation: party 0.5s infinite alternate-reverse;
+}
+@keyframes party {
+  from {
+    fill: #0f0909;
+  }
+  to {
+    fill: #e3c43a;
+  }
+}
+.container:has(.magic-input:checked) .badge {
+  opacity: 1;
+  visibility: visible;
+}
